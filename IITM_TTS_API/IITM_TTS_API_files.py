@@ -6,22 +6,16 @@
 # Date: 16/02/2021
 
 import requests
-import shutil
-import wave
+# import shutil
+# import wave
 import json
 import wget
 import sys
 import os
 
-def main():
+def main(textFile, audioFolder, lang, gender):
 
-	# Read variables
-	textFile = sys.argv[1]
-	audioFolder = sys.argv[2]
-	lang = sys.argv[3]
-	gender = sys.argv[4]
-
-	tempFolderName = os.path.splitext(audioFile)[0]
+	# tempFolderName = os.path.splitext(audioFile)[0]
 	try:
 		os.makedirs(audioFolder)
 	except OSError as e:
@@ -49,22 +43,22 @@ def main():
 	fileList = []
 	for i in range(0,len(wav_list)):
 		url = wav_list[i]
-		filename = wget.download(url, out=tempFolderName)
+		filename = wget.download(url, out=audioFolder)
 		fileList.append(filename)
 
-	output_data= []
-	for infile in fileList:
-		w = wave.open(infile, 'rb')
-		output_data.append( [w.getparams(), w.readframes(w.getnframes())] )
-		w.close()
+	# output_data= []
+	# for infile in fileList:
+	# 	w = wave.open(infile, 'rb')
+	# 	output_data.append( [w.getparams(), w.readframes(w.getnframes())] )
+	# 	w.close()
     
-	output = wave.open(audioFile, 'wb')
-	output.setparams(output_data[0][0])
-	for i in range(len(output_data)):
-		output.writeframes(output_data[i][1])
-	output.close()
+	# output = wave.open(audioFile, 'wb')
+	# output.setparams(output_data[0][0])
+	# for i in range(len(output_data)):
+	# 	output.writeframes(output_data[i][1])
+	# output.close()
 
-	shutil.rmtree(tempFolderName)
+	# shutil.rmtree(tempFolderName)
 
 # API function
 def IITM_API_request(text,gender,lang):
@@ -86,5 +80,14 @@ def IITM_API_request(text,gender,lang):
 	return wav_list
 
 if __name__ == "__main__":
-	main()
+	# Read variables
+	textFile = sys.argv[1]
+	audioFolder = sys.argv[2]
+	lang = sys.argv[3]
+	gender = sys.argv[4]
+	# textFile = "IITM_TTS_API/tamil_input.txt"
+	# audioFolder = "IITM_TTS_API/out_fold"
+	# lang = "Tamil"
+	# gender = "male"
+	main(textFile, audioFolder, lang, gender)
 
