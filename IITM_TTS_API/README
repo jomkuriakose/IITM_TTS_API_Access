@@ -1,0 +1,2 @@
+python3 IITM_TTS_API.py input.txt audio.wav Hindi male
+python3 IITM_TTS_API_files.py input.txt audio_folder Hindi male

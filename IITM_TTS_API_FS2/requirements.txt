@@ -1,0 +1,8 @@
+joblib
+requests
+argparse
+pathlib
+pybase64
+wave
+jsonlib-python3
+wget
